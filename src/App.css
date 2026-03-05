@@ -20,3 +20,7 @@ h1 {
     0 0 10px #b388ff,
     0 0 20px #b388ff;
 }
+
+.Toastify__toast {
+  text-transform: capitalize;
+}
