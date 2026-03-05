@@ -1,7 +1,6 @@
-import { FiEdit, FiTrash2 } from "react-icons/fi";
 import "./SingleItem.css";
 
-const SingleItem = ({ item, editCompleted, removeItem }) => {
+const SingleItem = ({ item, editCompleted, removeItem, setEditId }) => {
   return (
     <div className="single-item">
       <input
@@ -14,7 +13,7 @@ const SingleItem = ({ item, editCompleted, removeItem }) => {
       <button
         className="btn icon-btn edit-btn"
         type="button"
-        onClick={() => null}
+        onClick={() => setEditId(item.id)}
       >
         <i className="fa-solid fa-pen"></i>
       </button>
