@@ -1,14 +1,26 @@
 import Items from "./components/Items";
-import { groceryItems } from "./data/groceryItems";
 import { useEffect, useRef, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { nanoid } from "nanoid";
 import Form from "./components/Form";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
+const getLocalStorage = () => {
+  let list = localStorage.getItem("grocery-list");
+  if (list) {
+    return JSON.parse(list);
+  }
+  return [];
+};
+
+const setLocalStorage = (items) => {
+  localStorage.setItem("grocery-list", JSON.stringify(items));
+};
+
+const initialList = getLocalStorage();
 
 const App = () => {
-  const [items, setItems] = useState(groceryItems);
+  const [items, setItems] = useState(initialList);
   const [editId, setEditId] = useState(null);
   const inputRef = useRef(null);
 
@@ -26,7 +38,8 @@ const App = () => {
     };
     const newItems = [...items, newItem];
     setItems(newItems);
-    toast.success("grocery item added");
+    setLocalStorage(newItems);
+    toast.success("item added to the list");
   };
 
   const editCompleted = (itemId) => {
@@ -37,11 +50,13 @@ const App = () => {
       return item;
     });
     setItems(newItems);
+    setLocalStorage(newItems);
   };
 
   const removeItem = (itemId) => {
     const newItems = items.filter((item) => item.id !== itemId);
     setItems(newItems);
+    setLocalStorage(newItems);
     toast.success("item deleted");
   };
 
@@ -54,26 +69,28 @@ const App = () => {
     });
     setItems(newItems);
     setEditId(null);
+    setLocalStorage(newItems);
     toast.success("item updated");
   };
 
   return (
-    <section className="section-center">
+    <>
       <ToastContainer position="top-center" />
-      <Form
-        addItem={addItem}
-        updateItemName={updateItemName}
-        editItemId={editId}
-        itemToEdit={items.find((item) => item.id === editId)}
-        inputRef={inputRef}
-      />
-      <Items
-        items={items}
-        editCompleted={editCompleted}
-        removeItem={removeItem}
-        setEditId={setEditId}
-      />
-    </section>
+      <section className="section-center">
+        <Form
+          addItem={addItem}
+          updateItemName={updateItemName}
+          editItemId={editId}
+          itemToEdit={items.find((item) => item.id === editId)}
+        />
+        <Items
+          items={items}
+          editCompleted={editCompleted}
+          removeItem={removeItem}
+          setEditId={setEditId}
+        />
+      </section>
+    </>
   );
 };
 

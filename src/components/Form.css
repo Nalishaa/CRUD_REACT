@@ -5,6 +5,7 @@ form h2 {
   font-family: Helvetica, sans-serif;
   font-weight: 550;
   color: #ffffff;
+  white-space: nowrap;
   text-shadow:
     0 0 5px #b388ff,
     0 0 10px #b388ff,

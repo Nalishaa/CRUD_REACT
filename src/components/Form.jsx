@@ -7,7 +7,6 @@ const Form = ({
   editItemId,
   updateItemName,
   itemToEdit,
-  inputRef,
 }) => {
   const [newItemName, setNewItemName] = useState("");
 
