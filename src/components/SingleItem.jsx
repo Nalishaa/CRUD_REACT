@@ -1,21 +1,22 @@
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import "./SingleItem.css";
 
-const SingleItem = ({ item }) => {
+const SingleItem = ({ item, editCompleted }) => {
   return (
     <div className="single-item">
-      <input type="checkbox" checked={item.completed} onChange={() => null} />
-      <p
-        style={{
-          textTransform: "capitalize",
-          textDecoration: item.completed ? "line-through" : "none",
-        }}
-      >
-        {item.name}
-      </p>
+      <input
+        type="checkbox"
+        checked={item.completed}
+        onChange={() => editCompleted(item.id)}
+      />
+      <p className={item.completed ? "completed" : ""}>{item.name}</p>
 
-      <button className="btn icon-btn" type="button" onClick={() => null}>
-        <FiEdit size={18} />
+      <button
+        className="btn icon-btn edit-btn"
+        type="button"
+        onClick={() => null}
+      >
+        <i className="fa-solid fa-pen"></i>
       </button>
 
       <button
@@ -23,7 +24,7 @@ const SingleItem = ({ item }) => {
         type="button"
         onClick={() => null}
       >
-        <FiTrash2 size={18} />
+        <i className="fa-solid fa-trash"></i>
       </button>
     </div>
   );

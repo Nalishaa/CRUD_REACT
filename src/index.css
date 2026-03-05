@@ -11,7 +11,7 @@ body {
   background-color: #eee;
   background:
     linear-gradient(135deg, rgba(128, 47, 95, 0.14), rgba(10, 49, 70, 0.13)),
-    url("./images/bg1.jpg");
+    url("/images/bg1.jpg");
 
   background-size: cover;
   background-position: center;
@@ -40,7 +40,7 @@ body {
   backdrop-filter: blur(14px) saturate(120%);
   -webkit-backdrop-filter: blur(14px) saturate(120%);
 
-  border-radius: 20px;
+  border-radius: 55px;
   border: 1.5px solid rgba(255, 255, 255, 0.25);
 
   box-shadow:
@@ -48,4 +48,12 @@ body {
     0 40px 100px rgba(0, 0, 0, 0.25),
     0 0 18px rgba(179, 136, 255, 0.35),
     0 0 35px rgba(179, 136, 255, 0.25);
+}
+
+@media (max-width: 600px) {
+  .section-center {
+    width: 100%;
+    max-width: none;
+    border-radius: 0;
+  }
 }
